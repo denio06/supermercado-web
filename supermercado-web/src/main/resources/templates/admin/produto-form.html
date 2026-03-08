@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Produto - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        nav { background: #1b5e20; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+        nav h1 { color: white; font-size: 20px; }
+        nav a { color: white; text-decoration: none; margin-left: 16px; }
+        .container { padding: 32px; max-width: 600px; }
+        h2 { color: #333; margin-bottom: 24px; }
+        .card { background: white; padding: 32px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        label { display: block; margin-bottom: 6px; color: #555; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 20px; }
+        textarea { height: 100px; resize: vertical; }
+        .botoes { display: flex; gap: 12px; }
+        .btn { padding: 12px 24px; background: #2e7d32; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; text-decoration: none; }
+        .btn:hover { background: #1b5e20; }
+        .btn-cancelar { background: #888; }
+        .btn-cancelar:hover { background: #666; }
+    </style>
+</head>
+<body>
+<nav>
+    <h1>⚙️ Admin - SabugoMercadinho</h1>
+    <div>
+        <a th:href="@{/admin}">Dashboard</a>
+        <a th:href="@{/logout}">Sair</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>📦 Produto</h2>
+    <div class="card">
+        <form th:action="@{/admin/produtos/salvar}" th:object="${produto}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
+            <label>Nome do Produto</label>
+            <input type="text" th:field="*{nome}" placeholder="Ex: Arroz 5kg" required/>
+
+            <label>Descrição</label>
+            <textarea th:field="*{descricao}" placeholder="Descrição do produto..."></textarea>
+
+            <label>Preço (R$)</label>
+            <input type="number" th:field="*{preco}" placeholder="0.00" step="0.01" required/>
+
+            <label>Estoque</label>
+            <input type="number" th:field="*{estoque}" placeholder="0" required/>
+
+            <label>URL da Imagem</label>
+            <input type="text" th:field="*{imagem}" placeholder="https://..."/>
+
+            <label>Categoria</label>
+            <select th:field="*{categoria.id}">
+                <option value="">Sem categoria</option>
+                <option th:each="cat : ${categorias}"
+                        th:value="${cat.id}"
+                        th:text="${cat.nome}">
+                </option>
+            </select>
+
+            <div class="botoes">
+                <button type="submit" class="btn">Salvar</button>
+                <a th:href="@{/admin/produtos}" class="btn btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorias - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        nav { background: #1b5e20; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+        nav h1 { color: white; font-size: 20px; }
+        nav a { color: white; text-decoration: none; margin-left: 16px; }
+        .container { padding: 32px; }
+        .topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        h2 { color: #333; }
+        .btn { padding: 10px 20px; background: #2e7d32; color: white; border: none; border-radius: 6px; text-decoration: none; font-size: 14px; }
+        .btn:hover { background: #1b5e20; }
+        table { width: 100%; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-collapse: collapse; }
+        th { background: #2e7d32; color: white; padding: 14px 16px; text-align: left; }
+        td { padding: 14px 16px; border-bottom: 1px solid #eee; }
+        tr:last-child td { border-bottom: none; }
+        .btn-deletar { padding: 6px 14px; background: #c62828; color: white; border: none; border-radius: 6px; text-decoration: none; font-size: 13px; }
+        .btn-deletar:hover { background: #b71c1c; }
+    </style>
+</head>
+<body>
+<nav>
+    <h1>⚙️ Admin - SabugoMercadinho</h1>
+    <div>
+        <a th:href="@{/admin}">Dashboard</a>
+        <a th:href="@{/logout}">Sair</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="topo">
+        <h2>🏷️ Categorias</h2>
+        <a th:href="@{/admin/categorias/nova}" class="btn">+ Nova Categoria</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categoria : ${categorias}">
+            <td th:text="${categoria.id}"></td>
+            <td th:text="${categoria.nome}"></td>
+            <td>
+                <a th:href="@{/admin/categorias/deletar/{id}(id=${categoria.id})}" class="btn-deletar">Deletar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

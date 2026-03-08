@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - SabugoMercadinho</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        nav { background: #1b5e20; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+        nav h1 { color: white; font-size: 20px; }
+        nav a { color: white; text-decoration: none; margin-left: 16px; }
+        .container { padding: 32px; }
+        h2 { color: #333; margin-bottom: 24px; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; margin-bottom: 32px; }
+        .card { background: white; padding: 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+        .card h3 { font-size: 40px; color: #2e7d32; }
+        .card p { color: #666; margin-top: 8px; }
+        .menu { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+        .menu a { background: #2e7d32; color: white; padding: 16px; border-radius: 10px; text-decoration: none; text-align: center; font-size: 16px; display: block; }
+        .menu a:hover { background: #1b5e20; }
+    </style>
+</head>
+<body>
+<nav>
+    <h1>⚙️ Admin - SabugoMercadinho</h1>
+    <div>
+        <a th:href="@{/produtos}">🛒 Ver Loja</a>
+        <a th:href="@{/logout}">Sair</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Dashboard</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3 th:text="${totalProdutos}">0</h3>
+            <p>Produtos cadastrados</p>
+        </div>
+        <div class="card">
+            <h3 th:text="${totalCategorias}">0</h3>
+            <p>Categorias cadastradas</p>
+        </div>
+    </div>
+
+    <div class="menu">
+        <a th:href="@{/admin/produtos}">📦 Gerenciar Produtos</a>
+        <a th:href="@{/admin/categorias}">🏷️ Gerenciar Categorias</a>
+    </div>
+</div>
+</body>
+</html>

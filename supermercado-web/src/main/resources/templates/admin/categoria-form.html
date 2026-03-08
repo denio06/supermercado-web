@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Categoria - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        nav { background: #1b5e20; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+        nav h1 { color: white; font-size: 20px; }
+        nav a { color: white; text-decoration: none; margin-left: 16px; }
+        .container { padding: 32px; max-width: 500px; }
+        h2 { color: #333; margin-bottom: 24px; }
+        .card { background: white; padding: 32px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        label { display: block; margin-bottom: 6px; color: #555; font-size: 14px; }
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 20px; }
+        .botoes { display: flex; gap: 12px; }
+        .btn { padding: 12px 24px; background: #2e7d32; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; text-decoration: none; }
+        .btn:hover { background: #1b5e20; }
+        .btn-cancelar { background: #888; }
+        .btn-cancelar:hover { background: #666; }
+    </style>
+</head>
+<body>
+<nav>
+    <h1>⚙️ Admin - SabugoMercadinho</h1>
+    <div>
+        <a th:href="@{/admin}">Dashboard</a>
+        <a th:href="@{/logout}">Sair</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>🏷️ Nova Categoria</h2>
+    <div class="card">
+        <form th:action="@{/admin/categorias/salvar}" th:object="${categoria}" method="post">
+            <label>Nome da Categoria</label>
+            <input type="text" th:field="*{nome}" placeholder="Ex: Frutas, Bebidas..." required/>
+            <div class="botoes">
+                <button type="submit" class="btn">Salvar</button>
+                <a th:href="@{/admin/categorias}" class="btn btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
