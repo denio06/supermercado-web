@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Supermercado</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .card { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { text-align: center; color: #2e7d32; margin-bottom: 24px; }
+        input { width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+        button { width: 100%; padding: 12px; background: #2e7d32; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #1b5e20; }
+        .links { text-align: center; margin-top: 16px; }
+        .links a { color: #2e7d32; text-decoration: none; }
+        .erro { background: #ffebee; color: #c62828; padding: 10px; border-radius: 6px; margin-bottom: 16px; text-align: center; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>🛒 SabugoMercadinho</h2>
+
+    <div th:if="${param.error}" class="erro">
+        Email ou senha incorretos!
+    </div>
+
+    <div th:if="${param.logout}" class="erro" style="background:#e8f5e9; color:#2e7d32;">
+        Você saiu com sucesso!
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <input type="email" name="username" placeholder="Email" required/>
+        <input type="password" name="password" placeholder="Senha" required/>
+        <button type="submit">Entrar</button>
+    </form>
+
+    <div class="links">
+        <p>Não tem conta? <a th:href="@{/cadastro}">Cadastre-se</a></p>
+    </div>
+</div>
+</body>
+</html>
